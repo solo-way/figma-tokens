@@ -128,19 +128,6 @@ textarea::-webkit-scrollbar-thumb {
   @apply border-border-muted;
 }
 
-.rotate {
-  animation: rotate 1000ms linear infinite;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .button-group .button {
   @apply border-none rounded-none;
 }

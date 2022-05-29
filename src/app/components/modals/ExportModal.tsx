@@ -37,9 +37,32 @@ export default function ExportModal({ onClose }: Props) {
   }, [expandShadow]);
 
   return (
-    <Modal large isOpen close={onClose}>
+    <Modal
+      title="Export"
+      large
+      showClose
+      isOpen
+      close={onClose}
+      footer={(
+        <Stack width="full" direction="row" justify="end" gap={4}>
+          <Button variant="secondary" onClick={onClose}>
+            Cancel
+          </Button>
+          <Button
+            href={`data:text/json;charset=utf-8,${encodeURIComponent(
+              getFormattedTokens({
+                includeAllTokens, includeParent, expandTypography, expandShadow,
+              }),
+            )}`}
+            download="tokens.json"
+            variant="primary"
+          >
+            Download
+          </Button>
+        </Stack>
+  )}
+    >
       <Stack gap={4} direction="column">
-        <Heading>Export</Heading>
         <p className="text-xs">
           This is an early version of a tokens export, if you encounter any issues please raise an
           {' '}
@@ -103,22 +126,6 @@ export default function ExportModal({ onClose }: Props) {
             includeAllTokens, includeParent, expandTypography, expandShadow,
           })}
         />
-        <Stack width="full" direction="row" justify="end" gap={4}>
-          <Button variant="secondary" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button
-            href={`data:text/json;charset=utf-8,${encodeURIComponent(
-              getFormattedTokens({
-                includeAllTokens, includeParent, expandTypography, expandShadow,
-              }),
-            )}`}
-            download="tokens.json"
-            variant="primary"
-          >
-            Download
-          </Button>
-        </Stack>
       </Stack>
     </Modal>
   );
