@@ -12,7 +12,6 @@ import TokenTree from '@/app/components/TokenTree';
 	title='TokenButton'
 	component={TokenButton}
 	args={{
-		type: TokenTypes.SIZING,
 		displayType:'GRID',
 		draggedToken: SingleToken | null,
   	dragOverToken: SingleToken | null,
@@ -30,7 +29,51 @@ export const TokenButtonDefaultStory = (args) => {
 }
 
 <Canvas>
-	<Story name='TokenButton' args={{
+	<Story name='Size' args={{
+		type: TokenTypes.SIZE,
+		token: {
+			value: 2,
+			type: "sizing",
+			name: "2",
+			internal__Parent: "core",
+			rawValue: "2"
+		}
+	}}>
+		{TokenButtonDefaultStory.bind({})}
+	</Story>
+	<Story name='Size' args={{
+		type: TokenTypes.SIZE,
+		token: {
+			value: 2,
+			type: "sizing",
+			name: "2",
+			internal__Parent: "core",
+			rawValue: "2"
+		}
+	}}>
+		{TokenButtonDefaultStory.bind({})}
+	</Story>
+	<Story name='ColorToken' args={{
+		type: TokenTypes.COLOR,
+		token: {
+			value: "#d8b4fe",
+			type: "color",
+			name: "color.purple.300",
+			internal__Parent: "core",
+			rawValue: "#d8b4fe"
+		}
+	}}>
+		{TokenButtonDefaultStory.bind({})}
+	</Story>
+	<Story name='BorderRadiusToken' args={{
+		type: TokenTypes.BORDER_RADIUS,
+		token: {
+			value: "64px",
+			type: "borderRadius",
+			name: "border-radius.0",
+			internal__Parent: "core",
+			rawValue: "64px"
+		}
 	}}>
 		{TokenButtonDefaultStory.bind({})}
 	</Story>
