@@ -14,16 +14,18 @@ import TokensBottomBar from '@/app/components/TokensBottomBar';
 export const TokensBottomBarDefaultStory = (args) => {
   return (
     <Provider store={store}>
-      <TokensBottomBar {...args} />
+      <TokensBottomBar />
     </Provider>
   )
 }
 
 <Canvas>
-  <Story name='Primary' args={{
-    label: 'Primary',
-    path: 'default.token',
-    id: 'listing',
+  <Story 
+    name='Primary' 
+    args={{
+      label: 'Primary',
+      path: 'default.token',
+      id: 'listing',
   }}>
     {TokensBottomBarDefaultStory.bind({})}
   </Story>

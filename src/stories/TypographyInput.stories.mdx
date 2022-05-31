@@ -4,6 +4,98 @@ import TypographyInput from '@/app/components/TypographyInput';
 <Meta 
   title='TypographyInput' 
   component={TypographyInput}
+  args={{
+    internalEditToken:{
+      type: "typography",
+      schema: {
+        label: "Typography",
+        property: "Typography",
+        type: "typography",
+        help: "If a (local) style is found with the same name it will match to that, if not, will use raw font values. Use 'Create Style' to batch-create styles from your tokens (e.g. in your design library). In the future we'll load all 'remote' styles and reference them inside the JSON.",
+        schemas: {
+          value: {
+            type: "object",
+            properties: {
+              fontFamily: {
+                type: "string"
+              },
+              fontWeight: {
+                type: "string"
+              },
+              lineHeight: {
+                type: "string"
+              },
+              fontSize: {
+                type: "string"
+              },
+              letterSpacing: {
+                type: "string"
+              },
+              paragraphSpacing: {
+                type: "string"
+              },
+              textDecoration: {
+                type: "string"
+              },
+              textCase: {
+                type: "string"
+              }
+            }
+          }
+        }
+      },
+      isPristine: true,
+      initialName: ""
+    },
+    resolvedTokens:[
+      {
+        value: {
+          x: 2,
+          y: 2,
+          blur: 2,
+          spread: 2,
+          color: "#000000",
+          type: "dropShadow"
+        },
+        type: "boxShadow",
+        name: "typodgraphy.headlines.small",
+        internal__Parent: "core",
+        rawValue: {
+          x: "2",
+          y: "2",
+          blur: "2",
+          spread: "2",
+          color: "#000000",
+          type: "dropShadow"
+        }
+      },
+      {
+        value: {
+          fontFamily: "Inter",
+          fontWeight: "Regular",
+          lineHeight: "AUTO",
+          fontSize: 14,
+          letterSpacing: "0%",
+          paragraphSpacing: 0,
+          textDecoration: "none",
+          textCase: "none"
+        },
+        type: "typography",
+        name: "typography.headlines.small",
+        internal__Parent: "core",
+        rawValue: {
+          fontFamily: "Inter",
+          fontWeight: "Regular",
+          lineHeight: "AUTO",
+          fontSize: "14",
+          letterSpacing: "0%",
+          paragraphSpacing: "0",
+          textDecoration: "none",
+          textCase: "none"
+        }
+      }
+    ]
+  }}
 />
 
 <ArgsTable of={TypographyInput}/>

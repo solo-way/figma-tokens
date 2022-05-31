@@ -60,7 +60,7 @@ export default function TypographyInput({
     setMode(changeMode);
     setAlias('');
   }, [mode]);
-
+  console.log(internalEditToken, resolvedTokens);
   return (
     <>
       <Box css={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -112,10 +112,10 @@ export default function TypographyInput({
           />
 
           {isAliasMode && typeof internalEditToken.value === 'string' && checkIfContainsAlias(internalEditToken.value) && (
-          <ResolvedValueBox
-            alias={alias}
-            selectedToken={selectedToken}
-          />
+            <ResolvedValueBox
+              alias={alias}
+              selectedToken={selectedToken}
+            />
           )}
         </Box>
       )}
