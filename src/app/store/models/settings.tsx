@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { createModel } from '@rematch/core';
-import { track } from '@/utils/analytics';
+import { setIdentityProperty, track } from '@/utils/analytics';
 import { RootModel } from '@/types/RootModel';
 import { UpdateMode } from '@/constants/UpdateMode';
 import { AsyncMessageTypes } from '@/types/AsyncMessages';
@@ -78,6 +78,7 @@ export const settings = createModel<RootModel>()({
     },
     setUISettings(state, payload: SettingsState) {
       // track ui setting to see usage
+      setIdentityProperty('ignoreFirstPart', payload.ignoreFirstPartForStyles ? 'true' : 'false');
       track('ignoreFirstPart', { isSet: payload.ignoreFirstPartForStyles });
 
       return {

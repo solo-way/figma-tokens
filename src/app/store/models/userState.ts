@@ -7,6 +7,7 @@ import { AsyncMessageChannel } from '@/AsyncMessageChannel';
 import { AsyncMessageTypes } from '@/types/AsyncMessages';
 import { LicenseStatus } from '@/constants/LicenseStatus';
 import * as userStateReducers from './reducers/userState';
+import { track } from '@/utils/analytics';
 
 export enum AddLicenseSource {
   PLUGIN,
@@ -102,6 +103,8 @@ export const userState = createModel<RootModel>()({
       if (error) {
         dispatch.userState.setLicenseStatus(LicenseStatus.ERROR);
         dispatch.userState.setLicenseError(error);
+        track('Error adding license key');
+
         if (source === AddLicenseSource.INITAL_LOAD) {
           notifyToUI('License key invalid, please check your Settings', { error: true });
         }
@@ -114,6 +117,7 @@ export const userState = createModel<RootModel>()({
           entitlements: [...new Set(entitlements)],
         });
         dispatch.userState.setLicenseStatus(LicenseStatus.VERIFIED);
+        track('Added license key');
 
         if (source === AddLicenseSource.UI) {
           notifyToUI('License added succesfully!');
@@ -151,6 +155,7 @@ export const userState = createModel<RootModel>()({
         entitlements: [],
         clientEmail: '',
       });
+      track('Removed license key');
     },
   }),
 });

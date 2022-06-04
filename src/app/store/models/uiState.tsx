@@ -259,6 +259,8 @@ export const uiState = createModel<RootModel>()({
       };
     },
     setTokenFilter(state, payload: string) {
+      track('Used search', { filter: payload });
+
       return {
         ...state,
         tokenFilter: payload,

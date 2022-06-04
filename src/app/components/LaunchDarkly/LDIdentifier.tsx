@@ -8,6 +8,7 @@ import { planSelector } from '@/selectors/planSelector';
 import { clientEmailSelector } from '@/selectors/getClientEmail';
 import { entitlementsSelector } from '@/selectors/getEntitlements';
 import { licenseKeySelector } from '@/selectors/licenseKeySelector';
+import { setIdentityProperty } from '@/utils/analytics';
 
 let ldIdentificationResolver: (flags: LDProps['flags']) => void = () => {};
 export const ldIdentificationPromise = new Promise<LDProps['flags']>((resolve) => {
@@ -43,6 +44,8 @@ export const LDIdentifier = () => {
           );
           ldIdentificationResolver(normalizedFlags);
         });
+      if (clientEmail) setIdentityProperty('EMAIL', clientEmail);
+      if (plan) setIdentityProperty('plan', plan);
     } else {
       ldIdentificationResolver({});
     }

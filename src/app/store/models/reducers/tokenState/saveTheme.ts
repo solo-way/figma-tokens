@@ -2,6 +2,7 @@ import hash from 'object-hash';
 import { ThemeObject } from '@/types';
 import type { TokenState } from '../../tokenState';
 import { setActiveTheme } from './setActiveTheme';
+import { track } from '@/utils/analytics';
 
 type Payload = Omit<ThemeObject, 'id' | '$figmaStyleReferences'> & {
   id?: string
@@ -24,6 +25,8 @@ export function saveTheme(state: TokenState, data: Payload): TokenState {
       },
     ],
   };
+
+  track('saveTheme');
 
   if (isActiveTheme) {
     // @README if this theme is currently active

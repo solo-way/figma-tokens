@@ -7,6 +7,12 @@ export function track(name: string, opts = {}) {
   }
 }
 
+export function setIdentityProperty(key: string, value: string) {
+  if (process.env.MIXPANEL_ACCESS_TOKEN) {
+    mixpanel.people.set(key, value);
+  }
+}
+
 export function identify({ userId, figmaId, name }: { userId: string; figmaId?: string | null; name?: string }) {
   if (process.env.MIXPANEL_ACCESS_TOKEN) {
     mixpanel.identify(userId);
@@ -14,7 +20,7 @@ export function identify({ userId, figmaId, name }: { userId: string; figmaId?: 
     mixpanel.people.set({
       USER_ID: userId,
       FIGMA_USER_ID: figmaId,
-      NAME: name,
+      Name: name,
       version: pjs.plugin_version,
     });
   }

@@ -9,6 +9,7 @@ import { StyledPrefix } from '../Input';
 import { TokenTypes } from '@/constants/TokenTypes';
 import { styled } from '@/stitches.config';
 import { StyledDownshiftInput } from './StyledDownshiftInput';
+import { track } from '@/utils/analytics';
 
 const StyledDropdown = styled('div', {
   position: 'absolute',
@@ -167,7 +168,8 @@ export const DownshiftInput: React.FunctionComponent<DownShiftProps> = ({
   const handleSelect = useCallback((selectedItem: any) => {
     setInputValue(value?.includes('$') ? `$${selectedItem.name}` : `{${selectedItem.name}}`);
     setShowAutoSuggest(false);
-  }, [setInputValue, setShowAutoSuggest, value]);
+    track('tokenSelect', { type });
+  }, [setInputValue, setShowAutoSuggest, value, type]);
 
   const handleAutoSuggest = React.useCallback(() => {
     setShowAutoSuggest(!showAutoSuggest);

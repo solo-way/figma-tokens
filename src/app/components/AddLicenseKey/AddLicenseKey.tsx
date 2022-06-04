@@ -14,6 +14,7 @@ import useConfirm from '@/app/hooks/useConfirm';
 import { AddLicenseSource } from '@/app/store/models/userState';
 import ProBadge from '../ProBadge';
 import { userIdSelector } from '@/selectors/userIdSelector';
+import { track } from '@/utils/analytics';
 
 export default function AddLicenseKey() {
   const dispatch = useDispatch<Dispatch>();
@@ -47,6 +48,7 @@ export default function AddLicenseKey() {
     });
     if (confirmation) {
       dispatch.userState.removeLicenseKey('');
+      track('Remove license key');
       removeAccessToFeatures();
     }
   }, [dispatch, confirm, removeAccessToFeatures]);

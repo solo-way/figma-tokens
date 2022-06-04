@@ -1,4 +1,5 @@
 import { TokenSetStatus } from '@/constants/TokenSetStatus';
+import { track } from '@/utils/analytics';
 import type { TokenState } from '../../tokenState';
 
 export function setActiveTheme(state: TokenState, themeId: string | null): TokenState {
@@ -14,6 +15,7 @@ export function setActiveTheme(state: TokenState, themeId: string | null): Token
         [tokenSet, TokenSetStatus.DISABLED]
       )),
     );
+  track('setActiveTheme');
 
   return {
     ...state,
