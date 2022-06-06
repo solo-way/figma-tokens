@@ -65,7 +65,6 @@ jobs:
         with:
           fullCoverageDiff: false
           runCommand: "npx jest --collectCoverageFrom='[\"src/**/*.{js,jsx,ts,tsx}\"]' --coverage --collectCoverage=true --coverageDirectory='./' --coverageReporters='json-summary' --forceExit --detectOpenHandles"
-          delta: 0.5
   test-transform:
     name: Transformer Tests
     runs-on: ubuntu-latest
