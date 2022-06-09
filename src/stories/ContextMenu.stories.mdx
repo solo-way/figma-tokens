@@ -1,0 +1,60 @@
+import { useState } from 'react';
+import { Meta, Story, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import { Provider } from 'react-redux';
+import { CheckIcon } from '@radix-ui/react-icons';
+
+import { store } from '@/app/store';
+import Heading from '@/app/components/Heading';
+
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuCheckboxItem,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
+  ContextMenuItemIndicator,
+  ContextMenuTriggerItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuArrow,
+} from '@/app/components/ContextMenu';
+
+<Meta title='ContextMenu' />
+
+export const ContextMenuDefaultStory = (args) => {
+  return (
+    <>
+    <ContextMenu>
+      <ContextMenuTrigger>
+        <Heading>
+          Heading Story
+        </Heading>
+      </ContextMenuTrigger>
+        <ContextMenuContent>
+          <ContextMenuItem>
+            ContextMenuItem
+          </ContextMenuItem>
+          <ContextMenuSeparator />
+          <ContextMenuCheckboxItem
+            key='CheckBoxItemKey'
+            checked={true}
+          >
+            <ContextMenuItemIndicator>
+              <CheckIcon />
+            </ContextMenuItemIndicator>
+              SB Context
+            <ContextMenuArrow />
+          </ContextMenuCheckboxItem>
+        </ContextMenuContent>
+    </ContextMenu>
+    </>
+  )
+}
+
+<Canvas>
+  <Story name='Default'>
+    {ContextMenuDefaultStory.bind({})}
+  </Story>
+</Canvas>
