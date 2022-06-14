@@ -30,7 +30,10 @@ export const TokenTooltipContentValue: React.FC<Props> = ({ token, shouldResolve
       const tokenValue = getTokenValue(nameToLookFor, tokensContext.resolvedTokens)?.value;
       return tokenValue || token.value;
     }
-    if (shouldResolve) return getTokenValue(token.name, tokensContext.resolvedTokens)?.value;
+    if (shouldResolve) {
+      console.log('getTokenValue', getTokenValue(token.name, tokensContext.resolvedTokens)?.value);
+      return getTokenValue(token.name, tokensContext.resolvedTokens)?.value;
+    }
     return token.value;
   }, [token, getTokenValue, shouldResolve, tokenIsShadowOrTypographyAlias, tokensContext.resolvedTokens]);
 

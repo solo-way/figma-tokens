@@ -12,7 +12,6 @@ type Props = {
 
 export const TokenTooltipContent: React.FC<Props> = ({ token }) => {
   const tokensContext = React.useContext(TokensContext);
-  console.log(tokensContext);
   const { isAlias } = useTokens();
   const tokenIsAlias = React.useMemo(() => (
     isAlias(token, tokensContext.resolvedTokens)
@@ -23,7 +22,7 @@ export const TokenTooltipContent: React.FC<Props> = ({ token }) => {
       && typeof token.value === 'string',
     [token],
   );
-  console.log('tokenIsAlias', tokenIsAlias);
+
   return (
     <div>
       <Box css={{ fontSize: '$0', fontWeight: '$bold', color: '$fgToolTip' }}>

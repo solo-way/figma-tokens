@@ -5,11 +5,14 @@ import { Provider } from 'react-redux';
 import '@testing-library/jest-dom/extend-expect';
 import { store } from '../../src/app/store';
 
-const AllTheProviders: FC = ({ children, options }) => (
-  <Provider store={store} {...options}>
-    {children}
-  </Provider>
-);
+const AllTheProviders: FC = ({ children, options }) => {
+  console.log(children, 'options', options);
+  return (
+    <Provider store={store} {...options}>
+      {children}
+    </Provider>
+  );
+}
 
 const resetStore = () => {
   store.dispatch({ type: 'RESET_APP' });
