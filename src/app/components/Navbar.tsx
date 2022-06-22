@@ -14,10 +14,10 @@ import useTokens from '@/app/store/useTokens';
 const Navbar: React.FC = () => {
   const { handleResize } = useMinimizeWindow();
   const { getFormattedTokens } = useTokens();
-  const tokens = getFormattedTokens({
-    includeAllTokens: true, includeParent: false, expandTypography: false, expandShadow: false,
-  });
   const handleOpenTokenFlowApp = useCallback(async () => {
+    const tokens = getFormattedTokens({
+      includeAllTokens: true, includeParent: false, expandTypography: false, expandShadow: false,
+    });
     const data = JSON.stringify(tokens, null, 2);
     const response = await axios({
       method: 'post',
@@ -26,8 +26,8 @@ const Navbar: React.FC = () => {
         data,
       },
     });
-    if (response.status === 200) window.open('http://localhost:3000');
-  }, []);
+    if (response.status === 200) window.open('http://localhost:3000/');
+  }, [getFormattedTokens]);
 
   return (
     <Box
