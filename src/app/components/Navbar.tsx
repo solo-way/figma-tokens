@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Box from './Box';
 import { Tabs } from '@/constants/Tabs';
@@ -10,21 +9,23 @@ import Minimize from '../assets/minimize.svg';
 import useMinimizeWindow from './useMinimizeWindow';
 import IconButton from './IconButton';
 import { IconFolder } from '@/icons';
-import { tokensSelector } from '@/selectors';
+import useTokens from '@/app/store/useTokens';
 
 const Navbar: React.FC = () => {
   const { handleResize } = useMinimizeWindow();
-  const tokens = useSelector(tokensSelector);
-  const tokenStringify = require('json-stringify-safe');
-  const handleOpenTokenFlowApp = useCallback(() => {
-    axios({
+  const { getFormattedTokens } = useTokens();
+  const tokens = getFormattedTokens({
+    includeAllTokens: true, includeParent: false, expandTypography: false, expandShadow: false,
+  });
+  const handleOpenTokenFlowApp = useCallback(async () => {
+    const data = JSON.stringify(JSON.parse(tokens));
+    console.log(tokens);
+    const response = await axios({
       method: 'post',
-      url: 'http://localhost:3000/api/hello',
-      data: tokenStringify(tokens),
-    }).then((response) => {
-      console.log(response.status);
+      url: 'http://localhost:3000/api/tokens',
+      data: tokens,
     });
-    window.open('http://localhost:3000');
+    if (response.status === 200) window.open('http://localhost:3000');
   }, []);
 
   return (
