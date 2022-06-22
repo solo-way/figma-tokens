@@ -18,12 +18,13 @@ const Navbar: React.FC = () => {
     includeAllTokens: true, includeParent: false, expandTypography: false, expandShadow: false,
   });
   const handleOpenTokenFlowApp = useCallback(async () => {
-    const data = JSON.stringify(JSON.parse(tokens));
-    console.log(tokens);
+    const data = JSON.stringify(tokens, null, 2);
     const response = await axios({
       method: 'post',
       url: 'http://localhost:3000/api/tokens',
-      data: tokens,
+      data: {
+        data,
+      },
     });
     if (response.status === 200) window.open('http://localhost:3000');
   }, []);
