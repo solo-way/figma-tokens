@@ -18,11 +18,12 @@ const Navbar: React.FC = () => {
     const tokens = getFormattedTokens({
       includeAllTokens: true, includeParent: false, expandTypography: false, expandShadow: false,
     });
+    const data = JSON.stringify(tokens, null, 2);
     const response = await axios({
       method: 'post',
       url: 'http://localhost:3000/api/tokens',
       data: {
-        tokens,
+        data,
       },
     });
     if (response.status === 200) window.open('http://localhost:3000/');
