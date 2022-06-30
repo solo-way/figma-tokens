@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
         data,
       },
     });
-    if (response.status === 200) window.open('http://localhost:3000/');
+    if (response.status === 200) window.open(`http://localhost:3000/?id=${response.data.result}`);
   }, [getFormattedTokens]);
 
   return (
