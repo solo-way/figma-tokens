@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
         data,
       },
     });
-    if (response.status === 200) window.open(`https://tokenflow.vercel.app/id=${response.data}`);
+    if (response.status === 200) window.open(`https://tokenflow.vercel.app/?id=${response.data}`);
   }, []);
 
   return (
