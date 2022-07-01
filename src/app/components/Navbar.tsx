@@ -21,12 +21,12 @@ const Navbar: React.FC = () => {
     const data = JSON.stringify(tokens, null, 2);
     const response = await axios({
       method: 'post',
-      url: 'http://localhost:3000/api/tokens',
+      url: 'https://tokenflow.vercel.app/api/tokens',
       data: {
         data,
       },
     });
-    if (response.status === 200) window.open('http://localhost:3000');
+    if (response.status === 200) window.open(`https://tokenflow.vercel.app/id=${response.data}`);
   }, []);
 
   return (
