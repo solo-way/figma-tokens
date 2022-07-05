@@ -49,7 +49,7 @@ export default function useRemoteTokens() {
   const pullTokens = useCallback(async ({
     context = api, featureFlags, usedTokenSet, activeTheme,
   }: PullTokensOptions) => {
-    track('pullTokens', { provider: context.provider });
+    track('pullTokens', { provider: context.provider, filePath: 'filePath' in context ? context.filePath : undefined });
     dispatch.uiState.startJob({
       name: BackgroundJobs.UI_PULLTOKENS,
       isInfinite: true,
