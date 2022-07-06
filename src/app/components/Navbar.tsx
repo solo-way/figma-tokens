@@ -14,10 +14,12 @@ import useTokens from '@/app/store/useTokens';
 const Navbar: React.FC = () => {
   const { handleResize } = useMinimizeWindow();
   const { getFormattedTokens } = useTokens();
-  const tokens = getFormattedTokens({
-    includeAllTokens: true, includeParent: false, expandTypography: false, expandShadow: false,
-  });
+
   const handleOpenTokenFlowApp = useCallback(async () => {
+    const tokens = getFormattedTokens({
+      includeAllTokens: true, includeParent: false, expandTypography: false, expandShadow: false,
+    });
+
     const data = JSON.stringify(tokens, null, 2);
     const response = await axios({
       method: 'post',
@@ -27,7 +29,7 @@ const Navbar: React.FC = () => {
       },
     });
     if (response.status === 200) window.open(`https://brandcode-token-flow.herokuapp.com/?id=${response.data.result}`);
-  }, []);
+  }, [getFormattedTokens]);
 
   return (
     <Box
